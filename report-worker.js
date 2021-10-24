@@ -111,7 +111,7 @@ function getReactionsTimes(reactionTime) {
   var result = "";
   reactionTime.map((timeLong, index) => {
     var t = timeLong / 1000;
-    result += "ข้อ " + index + " -> ใช้เวลา " + t + "\n";
+    result += "ข้อ " + (index + 1) + " -> ใช้เวลา " + t + "\n";
   });
   return result;
 }
@@ -119,7 +119,7 @@ function getReactionsTimes(reactionTime) {
 function showClickTime(clickTime) {
   var timeClick = "";
   clickTime.map((click, index) => {
-    var question = "ข้อ" + index + " -> ";
+    var question = "ข้อ" + (index + 1) + " -> ";
     if (click === null) {
       question += "NOT CLICKED";
     } else {
@@ -134,7 +134,7 @@ function getBehavior(behavior) {
   var result = "";
   if (typeof behavior !== "undefined") {
     behavior.map((item, index) => {
-      result += "ข้อ " + index + " -> " + item + "\n";
+      result += "ข้อ " + (index + 1) + " -> " + item + "\n";
     });
   }
   return result;
@@ -143,7 +143,8 @@ function getBehavior(behavior) {
 function getEmotePerQuestion(emote) {
   var result = "";
   if (typeof emote !== "undefined") {
-    emote.map((perQuestion) => {
+    emote.map((perQuestion, index) => {
+      result += "ข้อ " + (index + 1);
       if (perQuestion[0]) {
         result += " |Angry| ";
       }
@@ -156,6 +157,7 @@ function getEmotePerQuestion(emote) {
       if (perQuestion[3]) {
         result += " |Sad| ";
       }
+      result += "\n";
     });
   }
   return result;
