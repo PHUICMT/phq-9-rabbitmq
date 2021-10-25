@@ -14,8 +14,7 @@ open
         if (msg !== null) {
           var dataFromRabbitMQ = JSON.parse(msg.content.toString());
           console.log(dataFromRabbitMQ);
-          await tools.processDataFromBackend(dataFromRabbitMQ)
-          .then(() => {
+          tools.processDataFromBackend(dataFromRabbitMQ).then(() => {
             ch.ack(msg);
           });
         }
