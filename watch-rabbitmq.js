@@ -8,14 +8,16 @@ open
   .then(function (conn) {
     return conn.createChannel();
   })
-  .then(function (ch) {
-    return ch.assertQueue(queue).then(function (ok) {
+  .then(async function (ch) {
+    return ch.assertQueue(queue).then(function () {
       return ch.consume(queue, function (msg) {
         if (msg !== null) {
           var dataFromRabbitMQ = JSON.parse(msg.content.toString());
           console.log(dataFromRabbitMQ);
-          tools.processDataFromBackend(dataFromRabbitMQ);
-          ch.ack(msg);
+          await tools.processDataFromBackend(dataFromRabbitMQ)
+          .then(() => {
+            ch.ack(msg);
+          });
         }
       });
     });

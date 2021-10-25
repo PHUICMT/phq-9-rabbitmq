@@ -30,6 +30,7 @@ async function processDataFromBackend(dataFromRabbitMQ) {
     });
     MailSender(json).then((result) => {
       console.log(result);
+      return result;
     });
   }
 }
