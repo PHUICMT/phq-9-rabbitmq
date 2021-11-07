@@ -15,6 +15,8 @@ async function processDataFromBackend(dataFromRabbitMQ) {
     var stringBehavior = getBehavior(dataFromRabbitMQ.all_json.behavior);
     var stringGroupsTest = getGroupType(dataFromRabbitMQ.all_json.checkBox);
     var stringEmote = "";
+    var stringResult = dataFromRabbitMQ.all_json.result;
+    var stringInfo = dataFromRabbitMQ.all_json.info;
     if (Emote != null) {
       stringEmote = getEmotePerQuestion(Emote);
     }
@@ -27,6 +29,8 @@ async function processDataFromBackend(dataFromRabbitMQ) {
       stringReactionTime: stringReactionTime,
       stringBehavior: stringBehavior,
       stringGroupsTest: stringGroupsTest,
+      stringResult: stringResult,
+      stringInfo: stringInfo,
     });
     MailSender(json).then((result) => {
       console.log(result);
